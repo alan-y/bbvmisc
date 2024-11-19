@@ -17,7 +17,9 @@ RoxygenNote: 7.3.2
 Imports: 
     broom,
     dplyr,
+    glue,
     magrittr,
+    scales,
     stats,
     stringr,
     tibble
