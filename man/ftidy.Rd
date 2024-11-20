@@ -4,12 +4,14 @@
 \alias{ftidy}
 \title{ftidy}
 \usage{
-ftidy(model, exp = TRUE)
+ftidy(model, exp = TRUE, drop_intercept = FALSE)
 }
 \arguments{
 \item{model}{Regression model.}
 
 \item{exp}{Option to exponentiate coefficients.}
+
+\item{drop_intercept}{Option to drop intercept term from the output table.}
 }
 \value{
 Regression model table with confidence intervals.
