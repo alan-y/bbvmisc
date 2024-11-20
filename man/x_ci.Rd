@@ -4,7 +4,16 @@
 \alias{x_ci}
 \title{x_ci}
 \usage{
-x_ci(x, l, u, digits = 2, brackets = TRUE, ci_sep = "-", ci_prefix = NULL)
+x_ci(
+  x,
+  l,
+  u,
+  digits = 2,
+  brackets = TRUE,
+  ci_sep = "-",
+  ci_prefix = NULL,
+  na_vals = NULL
+)
 }
 \arguments{
 \item{x}{Central estimate.}
@@ -20,6 +29,8 @@ x_ci(x, l, u, digits = 2, brackets = TRUE, ci_sep = "-", ci_prefix = NULL)
 \item{ci_sep}{Separator for confidence interval.}
 
 \item{ci_prefix}{Optional prefix to add text before confidence interval.}
+
+\item{na_vals}{Value to use to replace missing values; if NULL, uses x.}
 }
 \value{
 Estimate combined with confidence interval as a string.
