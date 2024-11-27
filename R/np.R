@@ -3,7 +3,7 @@
 #'
 #' @param n Counts.
 #' @param p Proportions.
-#' @param acc Number of decimals to use on percentages.
+#' @param acc Number to round to for percentages in the combined count and percentage variable (e.g. 0.1 shows one decimal place for the percentage).
 #' @return Counts with proportions in brackets.
 #' @export
 #' @examples

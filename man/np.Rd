@@ -11,7 +11,7 @@ np(n, p, acc = 1)
 
 \item{p}{Proportions.}
 
-\item{acc}{Number of decimals to use on percentages.}
+\item{acc}{Number to round to for percentages in the combined count and percentage variable (e.g. 0.1 shows one decimal place for the percentage).}
 }
 \value{
 Counts with proportions in brackets.
