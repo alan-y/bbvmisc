@@ -4,14 +4,20 @@
 \alias{np_table}
 \title{np_table}
 \usage{
-np_table(data, vars, np_only = TRUE)
+np_table(data, vars, acc = 1, np_only = TRUE, header = TRUE, var_col = FALSE)
 }
 \arguments{
 \item{data}{Input dataset.}
 
 \item{vars}{Character vector of variables to get counts and percentages for.}
 
+\item{acc}{Number to round to for percentages in the combined count and percentage variable (e.g. 0.1 shows one decimal place for the percentage).}
+
 \item{np_only}{Option to return only the combined count and percentage variable.}
+
+\item{header}{Option to use variable names as headers.}
+
+\item{var_col}{Option to include variable name as a separate column.}
 }
 \value{
 Data frame with counts and percentages for a list of variables.
@@ -21,6 +27,6 @@ Produce table of counts and percentages for a list of variables in a dataset.
 }
 \examples{
 \dontrun{
-np_table(dat, c("var1", "var2"))
+np_table(dat, c("var1", "var2"), acc = 0.1)
 }
 }
