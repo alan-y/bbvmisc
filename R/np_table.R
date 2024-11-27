@@ -1,5 +1,5 @@
 #' np_table
-#' @description Fast version of the tidy function from the broom package that uses the normal approximation for confidence intervals.
+#' @description Produce table of counts and percentages for a list of variables in a dataset.
 #'
 #' @param data Input dataset.
 #' @param vars Character vector of variables to get counts and percentages for.

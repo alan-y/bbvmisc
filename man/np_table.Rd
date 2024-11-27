@@ -17,7 +17,7 @@ np_table(data, vars, np_only = TRUE)
 Data frame with counts and percentages for a list of variables.
 }
 \description{
-Fast version of the tidy function from the broom package that uses the normal approximation for confidence intervals.
+Produce table of counts and percentages for a list of variables in a dataset.
 }
 \examples{
 \dontrun{
