@@ -11,7 +11,7 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' np_table(dat, c("var1", "var2"), acc = 0.1)
+#' np_table(dat, c("var1", "var2"), digits = 1)
 #' }
 np_table <- function(data, vars, digits = 0, np_only = TRUE, header = TRUE, var_col = FALSE) {
   out <- purrr::map2_df(

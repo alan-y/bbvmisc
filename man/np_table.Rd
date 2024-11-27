@@ -34,6 +34,6 @@ Produce table of counts and percentages for a list of variables in a dataset.
 }
 \examples{
 \dontrun{
-np_table(dat, c("var1", "var2"), acc = 0.1)
+np_table(dat, c("var1", "var2"), digits = 1)
 }
 }
