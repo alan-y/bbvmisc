@@ -3,7 +3,7 @@
 #'
 #' @param data Input dataset.
 #' @param vars Character vector of variables to get counts and percentages for.
-#' @param acc Number to round to for percentages in the combined count and percentage variable (e.g. 0.1 shows one decimal place for the percentage).
+#' @param digits Number of digits to use after the decimal point in percentages.
 #' @param np_only Option to return only the combined count and percentage variable.
 #' @param header Option to use variable names as headers.
 #' @param var_col Option to include variable name as a separate column.
@@ -13,7 +13,7 @@
 #' \dontrun{
 #' np_table(dat, c("var1", "var2"), acc = 0.1)
 #' }
-np_table <- function(data, vars, acc = 1, np_only = TRUE, header = TRUE, var_col = FALSE) {
+np_table <- function(data, vars, digits = 0, np_only = TRUE, header = TRUE, var_col = FALSE) {
   out <- purrr::map2_df(
     .x = dplyr::syms(vars),
     .y = vars,
@@ -26,7 +26,7 @@ np_table <- function(data, vars, acc = 1, np_only = TRUE, header = TRUE, var_col
     }) %>%
     dplyr::add_row(var = "Total", category = "Total", 
                    n = nrow(data), percent = 1, .before = 1) %>% 
-    dplyr::mutate(n_perc = np(.data$n, .data$percent, acc = acc)) %>% 
+    dplyr::mutate(n_perc = np(.data$n, .data$percent, digits = digits)) %>% 
     tibble::as_tibble()
   
   if (!header) {

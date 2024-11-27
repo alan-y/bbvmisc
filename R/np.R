@@ -3,16 +3,19 @@
 #'
 #' @param n Counts.
 #' @param p Proportions.
-#' @param acc Number to round to for percentages in the combined count and percentage variable (e.g. 0.1 shows one decimal place for the percentage).
+#' @param digits Number of digits to use after the decimal point in percentages.
 #' @return Counts with proportions in brackets.
 #' @export
 #' @examples
 #' \dontrun{
-#' np(n, p, acc = 0.1)
+#' np(n, p, digits = 1)
 #' }
-np <- function(n, p, acc = 1) {
+np <- function(n, p, digits = 0) {
   stopifnot(is.numeric(n) && is.numeric(p))
   
-  perc <- scales::percent(p, accuracy = acc)
+  perc <- janitor::round_half_up(p * 100, digits = digits)
+  perc <- formatC(perc, digits = digits, format = "f")
+  perc <- paste0(perc, "%")
+  
   glue::glue("{n} ({perc})", .na = NULL)
 }

@@ -4,14 +4,14 @@
 \alias{np}
 \title{np}
 \usage{
-np(n, p, acc = 1)
+np(n, p, digits = 0)
 }
 \arguments{
 \item{n}{Counts.}
 
 \item{p}{Proportions.}
 
-\item{acc}{Number to round to for percentages in the combined count and percentage variable (e.g. 0.1 shows one decimal place for the percentage).}
+\item{digits}{Number of digits to use after the decimal point in percentages.}
 }
 \value{
 Counts with proportions in brackets.
@@ -21,6 +21,6 @@ Paste n and percentage values together.
 }
 \examples{
 \dontrun{
-np(n, p, acc = 0.1)
+np(n, p, digits = 1)
 }
 }

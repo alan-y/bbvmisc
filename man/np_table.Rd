@@ -4,14 +4,21 @@
 \alias{np_table}
 \title{np_table}
 \usage{
-np_table(data, vars, acc = 1, np_only = TRUE, header = TRUE, var_col = FALSE)
+np_table(
+  data,
+  vars,
+  digits = 0,
+  np_only = TRUE,
+  header = TRUE,
+  var_col = FALSE
+)
 }
 \arguments{
 \item{data}{Input dataset.}
 
 \item{vars}{Character vector of variables to get counts and percentages for.}
 
-\item{acc}{Number to round to for percentages in the combined count and percentage variable (e.g. 0.1 shows one decimal place for the percentage).}
+\item{digits}{Number of digits to use after the decimal point in percentages.}
 
 \item{np_only}{Option to return only the combined count and percentage variable.}
 
