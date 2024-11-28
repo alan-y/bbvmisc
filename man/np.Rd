@@ -4,7 +4,7 @@
 \alias{np}
 \title{np}
 \usage{
-np(n, p, digits = 0)
+np(n, p, digits = 0, comma = FALSE)
 }
 \arguments{
 \item{n}{Counts.}
@@ -12,6 +12,8 @@ np(n, p, digits = 0)
 \item{p}{Proportions.}
 
 \item{digits}{Number of digits to use after the decimal point in percentages.}
+
+\item{comma}{Option to use comma separator on thousands.}
 }
 \value{
 Counts with proportions in brackets.
