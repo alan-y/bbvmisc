@@ -36,7 +36,7 @@ np_table <- function(data, vars, digits = 0, np_only = TRUE, header = TRUE, var_
   out_vars <- names(out)
   
   if (np_only) {
-    out_vars <- setdiff(out_vars, c("n", "percent"))
+    out_vars <- setdiff(out_vars, c("n", "percent", "valid_percent"))
   }
   
   if (!var_col) {

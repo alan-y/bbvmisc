@@ -18,9 +18,9 @@
 x_ci <- function(x, l, u, digits = 2, brackets = TRUE, ci_sep = "-", ci_prefix = NULL, na_vals = NULL) {
   stopifnot(is.numeric(x) && is.numeric(l) && is.numeric(u))
   
-  x <- ifelse(!is.na(x), formatC(x, digits = 2, format = "f"), NA_character_)
-  l <- ifelse(!is.na(l), formatC(l, digits = 2, format = "f"), NA_character_)
-  u <- ifelse(!is.na(u), formatC(u, digits = 2, format = "f"), NA_character_)
+  x <- ifelse(!is.na(x), formatC(x, digits = digits, format = "f"), NA_character_)
+  l <- ifelse(!is.na(l), formatC(l, digits = digits, format = "f"), NA_character_)
+  u <- ifelse(!is.na(u), formatC(u, digits = digits, format = "f"), NA_character_)
   
   if (!is.null(ci_prefix)) {
     l <- paste0(ci_prefix, l)
