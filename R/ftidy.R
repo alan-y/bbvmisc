@@ -21,8 +21,6 @@ ftidy <- function(model, exp = TRUE, drop_intercept = FALSE) {
   
   out <- cbind(model_tab, mod_ci)
   
-  out <- out[c("term", "estimate", "std.error", "statistic", "p.value", "conf.low", "conf.high")]
-  
   if (drop_intercept) {
     out[!grepl("Intercept", out$term), ]
   } else {
