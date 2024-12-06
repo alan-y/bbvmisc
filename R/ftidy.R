@@ -13,16 +13,13 @@
 ftidy <- function(model, exp = TRUE, drop_intercept = FALSE) {
   model_tab <- broom::tidy(model, exponentiate = exp)
   mod_ci <- tibble::as_tibble(confint.default(model))
-  names(mod_ci) <- c("conf_low", "conf_high")
+  names(mod_ci) <- c("conf.low", "conf.high")
   
   if (exp) {
     mod_ci <- exp(mod_ci)
   }
   
   out <- cbind(model_tab, mod_ci)
-  names(out)[names(out) == "p.value"] <- "p"
-  
-  out <- out[c("term", "estimate", "conf_low", "conf_high", "p")]
   
   if (drop_intercept) {
     out[!grepl("Intercept", out$term), ]
