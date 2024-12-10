@@ -15,20 +15,28 @@ glm_univar(
 )
 }
 \arguments{
-\item{data}{}
+\item{data}{Input dataset}
 
-\item{respvar}{}
+\item{respvar}{Single character string of response variable}
 
-\item{predvars}{}
+\item{predvars}{Vector of character strings of predictor variables}
 
-\item{family}{}
+\item{family}{Single character string of family function}
 
-\item{exp}{}
+\item{exp}{Option to exponentiate model estimates (default is TRUE)}
 
-\item{additional_term}{}
+\item{additional_term}{Option to add additional terms to model (default is blank)}
 
-\item{fast}{}
+\item{fast}{Option to use normal approximation for confidence intervals (default is TRUE)}
+}
+\value{
+Regression model table with confidence intervals
 }
 \description{
 Run a univariable `glm()` for a vector of predictor variables with tidy df output
+}
+\examples{
+\dontrun{
+glm_univar(dat, "var", c("var1", "var2"), additional_term="+ offset(log(py))")
+}
 }
