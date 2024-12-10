@@ -19,7 +19,7 @@
 glm_multivar <- function(data, respvar, predvars, family = "poisson", exp = TRUE, 
                          additional_term = "", fast = TRUE) {
   
-  formula <- paste(respvar, "~", paste(predvars, collapse =" + "), additional_term)
+  formula <- paste(respvar, "~", paste(predvars, collapse = " + "), additional_term)
   model <- glm(formula = formula, data = data, family = family)
   
   if (!fast) {
@@ -29,12 +29,9 @@ glm_multivar <- function(data, respvar, predvars, family = "poisson", exp = TRUE
   }
   
   out <- add_refcats(out, model)
-  
-  out[out$term != "(Intercept)", ]
+  out <- out[out$term != "(Intercept)", ]
   out$predvars <- stringr::str_match(out$term, paste0(predvars, collapse = "|"))
   out$term <- stringr::str_remove(out$term, paste0(predvars, collapse = "|"))
+  
   out[, c(ncol(out), seq(ncol(out) - 1))]
-  
-  return(out)
-  
 }

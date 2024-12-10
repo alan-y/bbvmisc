@@ -42,11 +42,9 @@ glm_univar <- function(data, respvar, predvars, family = "poisson", exp = TRUE,
   }
   
   out <- dplyr::bind_rows(out)
-  
-  out[out$term != "(Intercept)", ]
+  out <- out[out$term != "(Intercept)", ]
   out$predvars <- stringr::str_match(out$term, paste0(predvars, collapse = "|"))
   out$term <- stringr::str_remove(out$term, paste0(predvars, collapse = "|"))
-  out[, c(ncol(out), seq(ncol(out) - 1))]
   
-  return(out)
+  out[, c(ncol(out), seq(ncol(out) - 1))]
 }
