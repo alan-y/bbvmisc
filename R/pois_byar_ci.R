@@ -21,6 +21,12 @@ pois_byar_ci <- function(data,
                          pt,
                          factor = 1000,
                          conf.level = 0.95) {
+  
+  x <- dplyr::enquo(x)
+  pt <- dplyr::enquo(pt)
+  x <- rlang::as_name(x)
+  pt <- rlang::as_name(pt)
+  
   Z <- stats::qnorm(0.5 * (1 + conf.level))
   aprime <- data[, x] + 0.5
   Zinsert <- (Z / 3) * sqrt(1 / aprime)
