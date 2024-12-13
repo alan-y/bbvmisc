@@ -18,7 +18,7 @@
 np_table_outcome <- function(data, outcome, vars, digits=0, np_only = TRUE, var_col = FALSE){
   
   out <- purrr::map2_df(
-    .x=syms(vars),
+    .x=rlang::syms(vars),
     .y=vars,
     .f=~{data %>% 
         filter(!is.na(!!{{.x}})) %>% 
@@ -32,7 +32,7 @@ np_table_outcome <- function(data, outcome, vars, digits=0, np_only = TRUE, var_
                    outcome0 = sum(.$outcome0, na.rm=TRUE), 
                    outcome1 = sum(.$outcome1, na.rm=TRUE),
                    .before = 1) %>%
-    mutate(n_perc_outcome = np(.data$outcome1, (.data$outcome1 / (.data$outcome1 + .data$outcome0)), digits=digits)) %>%
+    dplyr::mutate(n_perc_outcome = np(.data$outcome1, (.data$outcome1 / (.data$outcome1 + .data$outcome0)), digits=digits)) %>%
     tibble::as_tibble()
   
   out_vars <- names(out)
