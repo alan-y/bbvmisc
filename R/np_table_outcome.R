@@ -54,6 +54,3 @@ np_table_outcome <- function(data, outcome, vars, digits = 0, np_only = TRUE,
   
   out[out_vars]
 }
-
-
-
