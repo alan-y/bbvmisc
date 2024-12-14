@@ -34,6 +34,6 @@ Produce table of counts of outcome by variable, and percentage of full data with
 }
 \examples{
 \dontrun{
-np_table_outcome(data, outcome="death", c("var1", "var2"))
+np_table_outcome(data, outcome = "death", c("var1", "var2"))
 }
 }

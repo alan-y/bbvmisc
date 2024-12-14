@@ -13,26 +13,33 @@
 #'
 #' @examples
 #' \dontrun{
-#' np_table_outcome(data, outcome="death", c("var1", "var2"))
+#' np_table_outcome(data, outcome = "death", c("var1", "var2"))
 #' }
-np_table_outcome <- function(data, outcome, vars, digits=0, np_only = TRUE, var_col = FALSE){
+np_table_outcome <- function(data, outcome, vars, digits = 0, np_only = TRUE, 
+                             var_col = FALSE) {
   
   out <- purrr::map2_df(
-    .x=rlang::syms(vars),
-    .y=vars,
-    .f=~{data %>% 
+    .x = rlang::syms(vars),
+    .y = vars,
+    .f = ~{data %>% 
         filter(!is.na(!!{{.x}})) %>% 
-        janitor::tabyl(!!{{.x}}, !!ensym(outcome)) %>% 
+        janitor::tabyl(!!{{.x}}, !!rlang::ensym(outcome)) %>% 
         dplyr::rename(category = 1, outcome0 = 2, outcome1 = 3) %>% 
         dplyr::mutate(category = as.character(category)) %>% 
         dplyr::add_row(category = .y, .before = 1) %>% 
         dplyr::mutate(var = .y, .before = 1)
-    }) %>%
+    })
+  
+  out <- out %>% 
     dplyr::add_row(var = "Total", category = "Total",
-                   outcome0 = sum(.$outcome0, na.rm=TRUE), 
-                   outcome1 = sum(.$outcome1, na.rm=TRUE),
+                   outcome0 = sum(out$outcome0, na.rm = TRUE), 
+                   outcome1 = sum(out$outcome1, na.rm = TRUE),
                    .before = 1) %>%
-    dplyr::mutate(n_perc_outcome = np(.data$outcome1, (.data$outcome1 / (.data$outcome1 + .data$outcome0)), digits=digits)) %>%
+    dplyr::mutate(
+      n_perc_outcome = np(.data$outcome1, 
+                          (.data$outcome1 / (.data$outcome1 + .data$outcome0)), 
+                          digits = digits)
+    ) %>%
     tibble::as_tibble()
   
   out_vars <- names(out)
@@ -45,7 +52,7 @@ np_table_outcome <- function(data, outcome, vars, digits=0, np_only = TRUE, var_
     out_vars <- setdiff(out_vars, "var")
   }
   
-  return(out[out_vars])
+  out[out_vars]
 }
 
 
