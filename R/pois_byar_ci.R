@@ -7,6 +7,7 @@
 #' @param pt person-time at risk or vector of person-times
 #' @param factor per how many person-time
 #' @param conf.level confidence level (default = 0.95)
+#' @param digits number of digits to round to
 #'
 #' @return original dataframe with rate, lower, upper, and rate_ci variables added
 #' @export
@@ -20,7 +21,8 @@ pois_byar_ci <- function(data,
                          x,
                          pt,
                          factor = 1000,
-                         conf.level = 0.95) {
+                         conf.level = 0.95,
+                         digits=0) {
   
   x <- dplyr::enquo(x)
   pt <- dplyr::enquo(pt)
@@ -42,11 +44,11 @@ pois_byar_ci <- function(data,
     )
   )
   
-  out$rate_ci <- paste0(round(out$rate, 2),
+  out$rate_ci <- paste0(round(as.numeric(out$rate), digits),
                         " (",
-                        round(out$conf.low, 2),
+                        round(as.numeric(out$conf.low), digits),
                         ", ",
-                        round(out$conf.high, 2),
+                        round(as.numeric(out$conf.high), digits),
                         ")")
   
   return(out)
