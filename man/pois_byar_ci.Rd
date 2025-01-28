@@ -4,7 +4,15 @@
 \alias{pois_byar_ci}
 \title{Title pois_byar_ci}
 \usage{
-pois_byar_ci(data, x, pt, factor = 1000, conf.level = 0.95)
+pois_byar_ci(
+  data,
+  x,
+  pt,
+  factor = 1000,
+  conf.level = 0.95,
+  digits = 2,
+  rate_ci_only = TRUE
+)
 }
 \arguments{
 \item{data}{Input dataset containing counts and person time}
@@ -16,9 +24,13 @@ pois_byar_ci(data, x, pt, factor = 1000, conf.level = 0.95)
 \item{factor}{per how many person-time}
 
 \item{conf.level}{confidence level (default = 0.95)}
+
+\item{digits}{number of digits to round to}
+
+\item{rate_ci_only}{only print rate and CIs (default = TRUE)}
 }
 \value{
-original dataframe with rate, lower, upper, and rate_ci variables added
+original dataframe with rate, lower, upper variables added
 }
 \description{
 Calculate confidence intervals for Poisson counts or rates using Byar's method, and return tidy output

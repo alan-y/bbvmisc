@@ -9,10 +9,13 @@
 #' @param pt Variable containing person time.
 #' @param var_col Option to include variable name as a separate column.
 #'
-#' @return
+#' @return Dataframe
 #' @export
 #'
-#' @examples
+#' @examples 
+#' \dontrun{
+#' pt_table(data, id_var="bbv_id", outcome="drd", vars=c("sex", "hb"), pt="person-years")
+#' }
 #' 
 pt_table <- function(data,
                      id_var = "bbv_id",
@@ -20,7 +23,7 @@ pt_table <- function(data,
                      vars,
                      pt,
                      var_col = TRUE) {
-  out <- purrr::map2_df(.x = syms(vars),
+  out <- purrr::map2_df(.x = rlang::syms(vars),
                         .y = vars,
                         .f = ~ {
                           data %>%

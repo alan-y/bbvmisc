@@ -30,14 +30,12 @@ glm_univar <- function(data, respvar, predvars, family = "poisson", exp = TRUE,
   if (!fast) {
     out <- purrr::map(
       .x = mod_list, 
-      .f = ~{broom::tidy(.x, exponentiate = exp, conf.int = TRUE) %>% 
-          add_refcats(.x)}
+      .f = ~{broom::tidy(.x, exponentiate = exp, conf.int = TRUE)}
     ) 
   } else {
     out <- purrr::map(
       .x = mod_list, 
-      .f = ~{ftidy(.x, exp = exp) %>% 
-          add_refcats(.x)}
+      .f = ~{ftidy(.x, exp = exp)}
     ) 
   }
   
