@@ -30,16 +30,18 @@ np_table_outcome <- function(data, outcome, vars, digits = 0, np_only = TRUE,
         dplyr::mutate(var = .y, .before = 1)
     })
   
-  out <- out %>% 
-    dplyr::add_row(var = "Total", category = "Total",
-                   outcome0 = sum(out$outcome0, na.rm = TRUE), 
-                   outcome1 = sum(out$outcome1, na.rm = TRUE),
-                   .before = 1) %>%
+  total <- data %>%
+    dplyr::filter(!is.na(vars[1])) %>% 
+    janitor::tabyl(vars[1], !!rlang::ensym(outcome)) %>% 
+    dplyr::rename(category = 1, outcome0 = 2, outcome1 = 3) %>% 
+    dplyr::mutate(var = "Total", category = "Total") 
+  
+  out <- total %>%
+    dplyr::bind_rows(out) %>% 
     dplyr::mutate(
-      n_perc_outcome = np(.data$outcome1, 
+      n_perc_outcome = bbvmisc::np(.data$outcome1, 
                           (.data$outcome1 / (.data$outcome1 + .data$outcome0)), 
-                          digits = digits)
-    ) %>%
+                          digits = digits)) %>%
     tibble::as_tibble()
   
   out_vars <- names(out)

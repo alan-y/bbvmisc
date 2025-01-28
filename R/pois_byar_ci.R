@@ -8,6 +8,7 @@
 #' @param factor per how many person-time
 #' @param conf.level confidence level (default = 0.95)
 #' @param digits number of digits to round to
+#' @param rate_ci_only only print rate and CIs (default = TRUE)
 #'
 #' @return original dataframe with rate, lower, upper variables added
 #' @export
@@ -36,18 +37,19 @@ pois_byar_ci <- function(data,
   Zinsert <- (Z / 3) * sqrt(1 / aprime)
   conf.low <- (aprime * (1 - 1 / (9 * aprime) - Zinsert) ^ 3) / data[[pt]]
   conf.high <- (aprime * (1 - 1 / (9 * aprime) + Zinsert) ^ 3) / data[[pt]]
+  rate = (data[[x]] / data[[pt]])
   
   out <- cbind(
     data,
     data.frame(
-      rate = round((data[[x]] / data[[pt]]) * factor, digits),
+      rate = round(rate * factor, digits),
       conf.low =  round(conf.low * factor, digits),
       conf.high = round(conf.high * factor, digits)
     )
   )
   
   out <- out %>% 
-    mutate(rate_ci = x_ci(rate, conf.low, conf.high, ci_sep=", "))
+    dplyr::mutate(rate_ci = x_ci(rate, conf.low, conf.high, ci_sep=", "))
 
   out_vars <- names(out)
   
