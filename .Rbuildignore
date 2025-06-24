@@ -1,4 +1,11 @@
+^\\.git$
+^\\.gitignore$
+^README\.Rmd$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.github$
+
 ^LICENSE\.md$
-^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
