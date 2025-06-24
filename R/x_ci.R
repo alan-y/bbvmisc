@@ -15,28 +15,49 @@
 #' \dontrun{
 #' x_ci(1.2, 0.7, 1.5, ci_sep = "--", ci_prefix = "95% CI ")
 #' }
-x_ci <- function(x, l, u, digits = 2, brackets = TRUE, ci_sep = "-", ci_prefix = NULL, na_vals = NULL) {
+x_ci <- function(
+  x,
+  l,
+  u,
+  digits = 2,
+  brackets = TRUE,
+  ci_sep = "-",
+  ci_prefix = NULL,
+  na_vals = NULL
+) {
   stopifnot(is.numeric(x) && is.numeric(l) && is.numeric(u))
-  
-  x <- ifelse(!is.na(x), formatC(x, digits = digits, format = "f"), NA_character_)
-  l <- ifelse(!is.na(l), formatC(l, digits = digits, format = "f"), NA_character_)
-  u <- ifelse(!is.na(u), formatC(u, digits = digits, format = "f"), NA_character_)
-  
+
+  x <- ifelse(
+    !is.na(x),
+    formatC(x, digits = digits, format = "f"),
+    NA_character_
+  )
+  l <- ifelse(
+    !is.na(l),
+    formatC(l, digits = digits, format = "f"),
+    NA_character_
+  )
+  u <- ifelse(
+    !is.na(u),
+    formatC(u, digits = digits, format = "f"),
+    NA_character_
+  )
+
   if (!is.null(ci_prefix)) {
     l <- paste0(ci_prefix, l)
   }
-  
+
   if (brackets) {
     out <- glue::glue("{x} ({l}{ci_sep}{u})", .na = NULL)
   } else {
     out <- glue::glue("{x}, {l}{ci_sep}{u}", .na = NULL)
   }
-  
+
   if (is.null(na_vals)) {
     out[is.na(out)] <- x[is.na(out)]
   } else {
     out[is.na(out)] <- na_vals
   }
-  
+
   return(out)
 }

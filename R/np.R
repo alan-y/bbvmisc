@@ -13,14 +13,14 @@
 #' }
 np <- function(n, p, digits = 0, comma = FALSE) {
   stopifnot(is.numeric(n) && is.numeric(p))
-  
+
   perc <- janitor::round_half_up(p * 100, digits = digits)
   perc <- formatC(perc, digits = digits, format = "f")
   perc <- paste0(perc, "%")
-  
+
   if (comma) {
     n <- prettyNum(n, big.mark = ",")
   }
-  
+
   glue::glue("{n} ({perc})", .na = NULL)
 }
