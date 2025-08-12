@@ -8,6 +8,7 @@ np_table(
   data,
   vars,
   digits = 0,
+  comma = FALSE,
   np_only = TRUE,
   header = TRUE,
   var_col = FALSE
@@ -19,6 +20,8 @@ np_table(
 \item{vars}{Character vector of variables to get counts and percentages for.}
 
 \item{digits}{Number of digits to use after the decimal point in percentages.}
+
+\item{comma}{Option to use comma separator on thousands.}
 
 \item{np_only}{Option to return only the combined count and percentage variable.}
 

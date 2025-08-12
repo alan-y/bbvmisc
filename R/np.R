@@ -19,7 +19,7 @@ np <- function(n, p, digits = 0, comma = FALSE) {
   perc <- paste0(perc, "%")
 
   if (comma) {
-    n <- prettyNum(n, big.mark = ",")
+    n <- ifelse(!is.na(n), prettyNum(n, big.mark = ","), NA)
   }
 
   glue::glue("{n} ({perc})", .na = NULL)

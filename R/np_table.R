@@ -4,6 +4,7 @@
 #' @param data Input dataset.
 #' @param vars Character vector of variables to get counts and percentages for.
 #' @param digits Number of digits to use after the decimal point in percentages.
+#' @param comma Option to use comma separator on thousands.
 #' @param np_only Option to return only the combined count and percentage variable.
 #' @param header Option to use variable names as headers.
 #' @param var_col Option to include variable name as a separate column.
@@ -17,6 +18,7 @@ np_table <- function(
   data,
   vars,
   digits = 0,
+  comma = FALSE,
   np_only = TRUE,
   header = TRUE,
   var_col = FALSE
@@ -40,7 +42,7 @@ np_table <- function(
       percent = 1,
       .before = 1
     ) %>%
-    dplyr::mutate(n_perc = np(.data$n, .data$percent, digits = digits)) %>%
+    dplyr::mutate(n_perc = np(.data$n, .data$percent, digits = digits, comma = comma)) %>%
     tibble::as_tibble()
 
   if (!header) {
