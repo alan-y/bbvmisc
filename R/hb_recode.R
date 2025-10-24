@@ -11,7 +11,9 @@
 #' hb_recode(x)
 #' }
 hb_recode <- function(x, recode_to = "long", and_choice = "and") {
-  x <- stringr::str_trim(toupper(x), "both")
+  x <- toupper(x)
+  x <- stringr::str_remove(x, "^NHS")
+  x <- stringr::str_trim(x, "both")
 
   if (recode_to == "short") {
     hb_out <- dplyr::case_when(
