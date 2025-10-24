@@ -13,7 +13,7 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' x_ci(1.2, 0.7, 1.5, ci_sep = "--", ci_prefix = "95% CI ")
+#' x_ci(1.2, 0.7, 1.5, ci_sep = ", ", ci_prefix = "95% CI ")
 #' }
 x_ci <- function(
   x,
@@ -21,7 +21,7 @@ x_ci <- function(
   u,
   digits = 2,
   brackets = TRUE,
-  ci_sep = "-",
+  ci_sep = ", ",
   ci_prefix = NULL,
   na_vals = NULL
 ) {

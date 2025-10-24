@@ -10,7 +10,7 @@ x_ci(
   u,
   digits = 2,
   brackets = TRUE,
-  ci_sep = "-",
+  ci_sep = ", ",
   ci_prefix = NULL,
   na_vals = NULL
 )
@@ -40,6 +40,6 @@ Combine estimate with confidence interval into one string.
 }
 \examples{
 \dontrun{
-x_ci(1.2, 0.7, 1.5, ci_sep = "--", ci_prefix = "95\% CI ")
+x_ci(1.2, 0.7, 1.5, ci_sep = ", ", ci_prefix = "95\% CI ")
 }
 }

@@ -1,4 +1,4 @@
-#' np_table
+#' table_np
 #' @description Produce table of counts and percentages for a list of variables in a dataset.
 #'
 #' @param data Input dataset.
@@ -12,9 +12,9 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' np_table(dat, c("var1", "var2"), digits = 1)
+#' table_np(dat, c("var1", "var2"), digits = 1)
 #' }
-np_table <- function(
+table_np <- function(
   data,
   vars,
   digits = 0,

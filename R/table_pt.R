@@ -1,4 +1,4 @@
-#' Title pt_table
+#' Title table_pt
 #' @description
 #' Summarise number of people, number of events, and sum of person time by group.
 #'
@@ -14,10 +14,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' pt_table(data, id_var="bbv_id", outcome="drd", vars=c("sex", "hb"), pt="person-years")
+#' table_pt(data, id_var="bbv_id", outcome="drd", vars=c("sex", "hb"), pt="person-years")
 #' }
 #'
-pt_table <- function(
+table_pt <- function(
   data,
   id_var = "bbv_id",
   outcome,

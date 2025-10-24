@@ -1,4 +1,4 @@
-#' Title np_table_outcome
+#' Title table_np_outcome
 #' @description
 #' Produce table of counts of outcome by variable, and percentage of full data within group.
 #'
@@ -13,9 +13,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' np_table_outcome(data, outcome = "death", c("var1", "var2"))
+#' table_np_outcome(data, outcome = "death", c("var1", "var2"))
 #' }
-np_table_outcome <- function(
+table_np_outcome <- function(
   data,
   outcome,
   vars,
