@@ -14,11 +14,12 @@
 <url><loc>/reference/hb_recode.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
 <url><loc>/reference/np.html</loc></url>
-<url><loc>/reference/np_table.html</loc></url>
-<url><loc>/reference/np_table_outcome.html</loc></url>
 <url><loc>/reference/pipe.html</loc></url>
 <url><loc>/reference/pois_byar_ci.html</loc></url>
-<url><loc>/reference/pt_table.html</loc></url>
+<url><loc>/reference/table_np.html</loc></url>
+<url><loc>/reference/table_np_outcome.html</loc></url>
+<url><loc>/reference/table_pt.html</loc></url>
 <url><loc>/reference/x_ci.html</loc></url>
+<url><loc>/reference/x_ci_split.html</loc></url>
 </urlset>
 
