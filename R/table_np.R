@@ -42,7 +42,9 @@ table_np <- function(
       percent = 1,
       .before = 1
     ) %>%
-    dplyr::mutate(n_perc = np(.data$n, .data$percent, digits = digits, comma = comma)) %>%
+    dplyr::mutate(
+      n_perc = np(.data$n, .data$percent, digits = digits, comma = comma)
+    ) %>%
     tibble::as_tibble()
 
   if (!header) {

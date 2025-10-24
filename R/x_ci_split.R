@@ -15,17 +15,17 @@
 #' x_ci_split(df, ci_text)
 x_ci_split <- function(dat, var) {
   var <- rlang::ensym(var)
-  
+
   dat %>%
     tidyr::separate_wider_regex(
       !!var,
       patterns = c(
-        est   = "[0-9.+-eE]+",   # estimate
-        "\\s*\\(\\s*",           # opening parenthesis
-        lower = "[-0-9.+eE]+",   # lower CI
-        "\\s*,\\s*",             # comma
-        upper = "[-0-9.+eE]+",   # upper CI
-        "\\s*\\)\\s*"            # closing parenthesis
+        est = "[0-9.+-eE]+", # estimate
+        "\\s*\\(\\s*", # opening parenthesis
+        lower = "[-0-9.+eE]+", # lower CI
+        "\\s*,\\s*", # comma
+        upper = "[-0-9.+eE]+", # upper CI
+        "\\s*\\)\\s*" # closing parenthesis
       )
     ) %>%
     dplyr::mutate(dplyr::across(c(est, lower, upper), as.numeric))
