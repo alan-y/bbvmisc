@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_path.R
 \name{get_path}
 \alias{get_path}
-\title{format_p}
+\title{get_path}
 \usage{
 get_path(x, server_path = "conf")
 }

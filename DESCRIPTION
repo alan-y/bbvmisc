@@ -22,6 +22,7 @@ Imports:
     rlang,
     rstudioapi,
     stats,
+    stringdist,
     stringr,
     tibble,
     tidyr
