@@ -20,6 +20,7 @@ Imports:
     magrittr,
     purrr,
     rlang,
+    rstudioapi,
     stats,
     stringr,
     tibble,
