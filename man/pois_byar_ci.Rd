@@ -2,7 +2,7 @@
 % Please edit documentation in R/pois_byar_ci.R
 \name{pois_byar_ci}
 \alias{pois_byar_ci}
-\title{Title pois_byar_ci}
+\title{pois_byar_ci}
 \usage{
 pois_byar_ci(
   data,

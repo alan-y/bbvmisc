@@ -1,4 +1,4 @@
-#' Title table_pt
+#' table_pt
 #' @description
 #' Summarise number of people, number of events, and sum of person time by group.
 #'

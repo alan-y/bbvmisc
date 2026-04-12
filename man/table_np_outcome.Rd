@@ -2,7 +2,7 @@
 % Please edit documentation in R/table_np_outcome.R
 \name{table_np_outcome}
 \alias{table_np_outcome}
-\title{Title table_np_outcome}
+\title{table_np_outcome}
 \usage{
 table_np_outcome(
   data,

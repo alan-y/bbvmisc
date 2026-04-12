@@ -1,4 +1,4 @@
-#' Title pois_byar_ci
+#' pois_byar_ci
 #' @description
 #' Calculate confidence intervals for Poisson counts or rates using Byar's method, and return tidy output
 #'

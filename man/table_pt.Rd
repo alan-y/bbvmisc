@@ -2,7 +2,7 @@
 % Please edit documentation in R/table_pt.R
 \name{table_pt}
 \alias{table_pt}
-\title{Title table_pt}
+\title{table_pt}
 \usage{
 table_pt(data, id_var = "bbv_id", outcome, vars, pt, var_col = TRUE)
 }

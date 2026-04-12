@@ -1,4 +1,4 @@
-#' Title table_np_outcome
+#' table_np_outcome
 #' @description
 #' Produce table of counts of outcome by variable, and percentage of full data within group.
 #'
