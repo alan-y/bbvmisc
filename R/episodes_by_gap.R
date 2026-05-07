@@ -1,6 +1,6 @@
 # A gap-based episode constructor for longitudinal/event data
 #' episodes_by_gap
-#' 
+#'
 #' Constructs episodes for each individual where consecutive records are
 #' separated by no more than a specified gap. A new episode is started when
 #' the gap between dates exceeds the threshold.
@@ -29,7 +29,7 @@
 #'   \item{episode_end}{Last date in the episode}
 #'   \item{n_records}{Number of records in the episode}
 #' }
-#' 
+#'
 #' @details
 #' Episodes are defined as contiguous sequences of records where the gap
 #' between consecutive dates does not exceed `gap_threshold`.
@@ -48,26 +48,25 @@
 #'   episodes_by_gap(iain, paid_date, gap_threshold = 2L, collapse_episodes = TRUE)
 #'
 #' @export
-episodes_by_gap <- function(data,
-                            id_col,
-                            date_col,
-                            gap_threshold = 2,
-                            time_unit = c("months", "days"),
-                            collapse_episodes = FALSE) {
-  
+episodes_by_gap <- function(
+  data,
+  id_col,
+  date_col,
+  gap_threshold = 2,
+  time_unit = c("months", "days"),
+  collapse_episodes = FALSE
+) {
   time_unit <- match.arg(time_unit)
-  id_col   <- rlang::ensym(id_col)
+  id_col <- rlang::ensym(id_col)
   date_col <- rlang::ensym(date_col)
-  
+
   # time difference function
   time_diff <- function(x, y) {
     interval <- lubridate::interval(x, y)
-    unit <- switch(time_unit,
-                   "months" = "months",
-                   "days"   = "days")
+    unit <- switch(time_unit, "months" = "months", "days" = "days")
     as.integer(floor(lubridate::time_length(interval, unit)))
   }
-  
+
   data <- data %>%
     dplyr::arrange(!!id_col, !!date_col) %>%
     dplyr::mutate(
@@ -76,17 +75,17 @@ episodes_by_gap <- function(data,
       new_episode = is.na(gap) | gap > gap_threshold,
       episode_id = cumsum(new_episode)
     )
-  
+
   if (collapse_episodes) {
     data <- data %>%
       dplyr::group_by(!!id_col, episode_id) %>%
       dplyr::summarise(
         episode_start = min(!!date_col),
-        episode_end   = max(!!date_col),
-        n_records     = dplyr::n(),
+        episode_end = max(!!date_col),
+        n_records = dplyr::n(),
         .groups = "drop"
       )
   }
-  
+
   return(data)
 }
