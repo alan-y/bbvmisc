@@ -1,3 +1,4 @@
+utils::globalVariables(c("gap", "new_episode", "episode_id"))
 # A gap-based episode constructor for longitudinal/event data
 #' episodes_by_gap
 #'
@@ -41,11 +42,14 @@
 #' individual must be contiguous after sorting.
 #'
 #' @examples
+#' \dontrun{
 #' df %>%
 #'   episodes_by_gap(iain, paid_date, gap_threshold = 2L, time_unit = "months")
-#'
+#' }
+#' \dontrun{
 #' df %>%
 #'   episodes_by_gap(iain, paid_date, gap_threshold = 2L, collapse_episodes = TRUE)
+#'   }
 #'
 #' @export
 episodes_by_gap <- function(

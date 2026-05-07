@@ -60,10 +60,13 @@ Data must be sortable by `id_col` and `date_col`, and records for each
 individual must be contiguous after sorting.
 }
 \examples{
+\dontrun{
 df \%>\%
   episodes_by_gap(iain, paid_date, gap_threshold = 2L, time_unit = "months")
-
+}
+\dontrun{
 df \%>\%
   episodes_by_gap(iain, paid_date, gap_threshold = 2L, collapse_episodes = TRUE)
+  }
 
 }
