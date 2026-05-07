@@ -18,6 +18,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Alan Yeung \email{alan.yeung@phs.scot} (\href{https://orcid.org/0000-0001-5226-3695}{ORCID})
 
+Authors:
+\itemize{
+  \item Alan Yeung \email{alan.yeung@phs.scot} (\href{https://orcid.org/0000-0001-5226-3695}{ORCID})
+}
+
 Other contributors:
 \itemize{
   \item Megan Glancy \email{megan.glancy2@phs.scot} (\href{https://orcid.org/0000-0003-2023-9353}{ORCID}) [contributor]
