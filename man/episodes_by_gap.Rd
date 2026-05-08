@@ -2,42 +2,49 @@
 % Please edit documentation in R/episodes_by_gap.R
 \name{episodes_by_gap}
 \alias{episodes_by_gap}
-\title{episodes_by_gap}
+\title{Constructs episodes for each individual based on gaps between consecutive
+date records. A new episode is started when the gap between dates exceeds
+a specified threshold, measured in complete calendar units.}
 \usage{
 episodes_by_gap(
   data,
   id_col,
   date_col,
+  calendar_unit = c("years", "months", "days"),
   gap_threshold = 2,
-  time_unit = c("months", "days"),
+  run_arrange = TRUE,
   collapse_episodes = FALSE
 )
 }
 \arguments{
-\item{data}{A data frame.}
+\item{data}{A data frame containing longitudinal or event-level records.}
 
 \item{id_col}{Column identifying individuals (unquoted).}
 
-\item{date_col}{Column containing dates (unquoted).}
+\item{date_col}{Column containing dates or date-time values (unquoted).}
 
-\item{gap_threshold}{Numeric. Maximum allowed gap between consecutive
-dates before a new episode is started.}
+\item{calendar_unit}{Character. Calendar unit used to compute gaps between
+consecutive dates. One of \code{"years"}, \code{"months"}, or \code{"days"}.}
 
-\item{time_unit}{Character. Unit for gap calculation. One of
-`"days"` or `"months"`.}
+\item{gap_threshold}{Numeric. Maximum allowed gap (in complete calendar units)
+between consecutive dates before a new episode is started.}
 
-\item{collapse_episodes}{Logical. If `TRUE`, returns one row per episode;
+\item{run_arrange}{Logical. If \code{TRUE}, the data are sorted by
+\code{id_col} and \code{date_col} before episode construction.}
+
+\item{collapse_episodes}{Logical. If \code{TRUE}, returns one row per episode;
 otherwise returns the original data with episode identifiers.}
 }
 \value{
-If `collapse_episodes = FALSE`, returns the input data with additional columns:
+If \code{collapse_episodes = FALSE}, returns the input data with additional
+columns:
 \describe{
-  \item{gap}{Gap between consecutive dates (in selected units)}
+  \item{gap}{Gap between consecutive dates (in complete calendar units)}
   \item{new_episode}{Logical indicator for the start of a new episode}
-  \item{episode_id}{Episode identifier (unique within `id_col` when combined)}
+  \item{episode_id}{Episode identifier (unique within each individual)}
 }
 
-If `collapse_episodes = TRUE`, returns one row per episode with:
+If \code{collapse_episodes = TRUE}, returns one row per episode with:
 \describe{
   \item{episode_start}{First date in the episode}
   \item{episode_end}{Last date in the episode}
@@ -45,28 +52,34 @@ If `collapse_episodes = TRUE`, returns one row per episode with:
 }
 }
 \description{
-Constructs episodes for each individual where consecutive records are
-separated by no more than a specified gap. A new episode is started when
-the gap between dates exceeds the threshold.
+Constructs episodes for each individual based on gaps between consecutive
+date records. A new episode is started when the gap between dates exceeds
+a specified threshold, measured in complete calendar units.
 }
 \details{
-Episodes are defined as contiguous sequences of records where the gap
-between consecutive dates does not exceed `gap_threshold`.
+Episodes are defined as contiguous sequences of records where the gap between
+consecutive dates does not exceed \code{gap_threshold}.
 
-Gaps are calculated using `lubridate::time_length()` and represent the
-number of complete units (e.g. full days or months) between dates.
+Gaps are calculated as the number of complete calendar units between dates
+using \code{count_calendar_units()}. The first record for each individual
+always starts a new episode.
 
-Data must be sortable by `id_col` and `date_col`, and records for each
-individual must be contiguous after sorting.
+Records must be sortable by \code{id_col} and \code{date_col}, and all records
+for each individual must be contiguous after sorting.
 }
 \examples{
 \dontrun{
 df \%>\%
-  episodes_by_gap(iain, paid_date, gap_threshold = 2L, time_unit = "months")
+  episodes_by_gap(iain, paid_date, gap_threshold = 2,
+                  calendar_unit = "months")
 }
+
 \dontrun{
 df \%>\%
-  episodes_by_gap(iain, paid_date, gap_threshold = 2L, collapse_episodes = TRUE)
-  }
+  episodes_by_gap(iain, paid_date,
+                  gap_threshold = 2,
+                  calendar_unit = "months",
+                  collapse_episodes = TRUE)
+}
 
 }

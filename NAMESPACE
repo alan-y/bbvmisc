@@ -2,6 +2,7 @@
 
 export("%>%")
 export(add_refcats)
+export(count_calendar_units)
 export(episodes_by_gap)
 export(format_p)
 export(ftidy)
