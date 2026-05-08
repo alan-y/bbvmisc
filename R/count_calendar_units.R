@@ -1,4 +1,3 @@
-
 #' Count complete calendar units between two date-time values
 #'
 #' Counts the number of complete calendar units (years, months, or days)
@@ -24,9 +23,9 @@
 #' @export
 count_calendar_units <- function(x, y, unit = c("years", "months", "days")) {
   unit <- match.arg(unit)
-  
+
   interval <- lubridate::interval(x, y)
-  
+
   lubridate::time_length(interval, unit = unit) |>
     floor() |>
     as.integer()

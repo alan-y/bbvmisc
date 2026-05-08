@@ -73,18 +73,22 @@ episodes_by_gap <- function(
   id_col <- rlang::ensym(id_col)
   date_col <- rlang::ensym(date_col)
 
-  if (run_arrange){
-  data <- data %>%
-    dplyr::arrange(!!id_col, !!date_col) 
+  if (run_arrange) {
+    data <- data %>%
+      dplyr::arrange(!!id_col, !!date_col)
   }
-  
+
   data <- data %>%
     dplyr::mutate(
-      gap = count_calendar_units(dplyr::lag(!!date_col), !!date_col, unit=calendar_unit),
+      gap = count_calendar_units(
+        dplyr::lag(!!date_col),
+        !!date_col,
+        unit = calendar_unit
+      ),
       gap = dplyr::if_else(dplyr::lag(!!id_col) != !!id_col, NA_integer_, gap),
       new_episode = is.na(gap) | gap > gap_threshold,
       episode_id = cumsum(new_episode)
-  )
+    )
 
   if (collapse_episodes) {
     data <- data %>%
