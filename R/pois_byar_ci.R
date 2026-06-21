@@ -37,7 +37,7 @@ pois_byar_ci <- function(
   Zinsert <- (Z / 3) * sqrt(1 / aprime)
   conf.low <- (aprime * (1 - 1 / (9 * aprime) - Zinsert)^3) / data[[pt]]
   conf.high <- (aprime * (1 - 1 / (9 * aprime) + Zinsert)^3) / data[[pt]]
-  rate = (data[[x]] / data[[pt]])
+  rate <- (data[[x]] / data[[pt]])
 
   out <- cbind(
     data,
