@@ -101,30 +101,19 @@ If <code>FALSE</code>, preserves padding created by formatting.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor" class="external-link">janitor</a></span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘janitor’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:stats’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     chisq.test, fisher.test</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor" class="external-link">janitor</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a basic tabyl</span></span></span>
 <span class="r-in"><span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sfirke.github.io/janitor/reference/tabyl.html" class="external-link">tabyl</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">gear</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Format with row percentages (default)</span></span></span>
 <span class="r-in"><span><span class="fu">adorn_np</span><span class="op">(</span><span class="va">tab</span>, denom <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  cyl          3         4         5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4   1 (9.1%) 8 (72.7%) 2 (18.2%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    6  2 (28.6%) 4 (57.1%) 1 (14.3%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    8 12 (85.7%)  0 (0.0%) 2 (14.3%)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Format with column percentages and 2 decimal places</span></span></span>
 <span class="r-in"><span><span class="fu">adorn_np</span><span class="op">(</span><span class="va">tab</span>, denom <span class="op">=</span> <span class="st">"col"</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  cyl           3          4          5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4   1 (6.67%) 8 (66.67%) 2 (40.00%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    6  2 (13.33%) 4 (33.33%) 1 (20.00%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    8 12 (80.00%)  0 (0.00%) 2 (40.00%)</span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
