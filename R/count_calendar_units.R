@@ -29,7 +29,7 @@ count_calendar_units <- function(
   unit = c("years", "months", "days"),
   floor = TRUE
 ) {
-  rlang::check_bool(floor)
+  stopifnot(is.logical(floor))
 
   unit <- match.arg(unit)
   interval <- lubridate::interval(x, y)
