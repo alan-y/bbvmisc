@@ -34,19 +34,9 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
-  Document:
-    needs: [Style]
-    uses: Public-Health-Scotland/actions/.github/workflows/phs_document.yaml@test_air
-    permissions:
-      contents: write
-      pull-requests: write
-    secrets: inherit
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
   R-CMD-check-core:
-    needs: [Style, Document]
-    uses: Public-Health-Scotland/actions/.github/workflows/phs_R-CMD-check-core.yaml@test_air
+    needs: [Style]
+    uses: Public-Health-Scotland/actions/.github/workflows/phs_R-CMD-check-core.yaml@v2.7.0
     permissions:
       contents: read
     secrets: inherit
@@ -55,7 +45,7 @@ jobs:
       cancel-in-progress: false
   R-CMD-check-extended:
     needs: [R-CMD-check-core]
-    uses: Public-Health-Scotland/actions/.github/workflows/phs_R-CMD-check-extended.yaml@test_air
+    uses: Public-Health-Scotland/actions/.github/workflows/phs_R-CMD-check-extended.yaml@v2.7.0
     permissions:
       contents: read
     secrets: inherit
@@ -63,15 +53,15 @@ jobs:
       group: ${{ inputs.limit_parallel == false && format('r-cmd-check-{0}-{1}', github.workflow, github.run_id) || 'package-checks-queue' }}
       cancel-in-progress: false
   pkgdown:
-    needs: [Document]
-    uses: Public-Health-Scotland/actions/.github/workflows/phs_pkgdown.yaml@test_air
+    needs: [Style]
+    uses: Public-Health-Scotland/actions/.github/workflows/phs_pkgdown.yaml@v2.7.0
     permissions:
       contents: write
     secrets: inherit
 
   # Final job to update status
   finalize:
-    needs: [Style, Document, R-CMD-check-core, pkgdown]
+    needs: [Style, R-CMD-check-core, pkgdown]
     runs-on: ubuntu-latest
     if: always()
     permissions:
@@ -82,7 +72,6 @@ jobs:
         with:
           script: |
             const allSuccess = ${{ needs.Style.result == 'success' &&
-                                    needs.Document.result == 'success' &&
                                     needs.R-CMD-check-core.result == 'success'}};
             await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,

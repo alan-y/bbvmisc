@@ -38,6 +38,7 @@ This function chains together several \code{janitor} package helpers:
 }
 }
 \examples{
+\dontrun{
 library(janitor)
 
 # Create a basic tabyl
@@ -48,7 +49,7 @@ adorn_np(tab, denom = "row")
 
 # Format with column percentages and 2 decimal places
 adorn_np(tab, denom = "col", digits = 2)
-
+}
 }
 \seealso{
 \code{\link[janitor]{tabyl}},

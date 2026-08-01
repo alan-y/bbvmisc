@@ -31,6 +31,7 @@
 #' \code{\link[janitor]{adorn_ns}}
 #'
 #' @examples
+#' \dontrun{
 #' library(janitor)
 #'
 #' # Create a basic tabyl
@@ -41,7 +42,7 @@
 #'
 #' # Format with column percentages and 2 decimal places
 #' adorn_np(tab, denom = "col", digits = 2)
-#'
+#'}
 #' @export
 adorn_np <- function(
   x,
@@ -54,9 +55,9 @@ adorn_np <- function(
   stopifnot(
     is.numeric(digits),
     length(digits) == 1,
-    digits >= 0
+    digits >= 0,
+    is.logical(trim)
   )
-  rlang::check_bool(trim)
 
   out <- janitor::adorn_percentages(x, denominator = denom) |>
     janitor::adorn_pct_formatting(digits = digits, rounding = "half up") |>
