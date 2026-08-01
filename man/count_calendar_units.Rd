@@ -4,7 +4,7 @@
 \alias{count_calendar_units}
 \title{Count complete calendar units between two date-time values}
 \usage{
-count_calendar_units(x, y, unit = c("years", "months", "days"))
+count_calendar_units(x, y, unit = c("years", "months", "days"), floor = TRUE)
 }
 \arguments{
 \item{x}{A date-time representing the start of the interval.}
@@ -13,6 +13,9 @@ count_calendar_units(x, y, unit = c("years", "months", "days"))
 
 \item{unit}{A character string specifying the calendar unit to count.
 One of \code{"years"}, \code{"months"}, or \code{"days"}.}
+
+\item{floor}{floor A logical scalar. If \code{TRUE} (default), the result is rounded
+down to the nearest whole integer.}
 }
 \value{
 An integer giving the number of complete calendar units between

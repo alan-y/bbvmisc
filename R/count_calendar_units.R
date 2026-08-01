@@ -7,6 +7,8 @@
 #' @param y A date-time representing the end of the interval.
 #' @param unit A character string specifying the calendar unit to count.
 #'   One of \code{"years"}, \code{"months"}, or \code{"days"}.
+#' @param floor floor A logical scalar. If \code{TRUE} (default), the result is rounded
+#'   down to the nearest whole integer.
 #'
 #' @return An integer giving the number of complete calendar units between
 #'   \code{x} and \code{y}.
@@ -21,12 +23,22 @@
 #' count_calendar_units(x, y, "days")
 #'}
 #' @export
-count_calendar_units <- function(x, y, unit = c("years", "months", "days")) {
+count_calendar_units <- function(
+  x,
+  y,
+  unit = c("years", "months", "days"),
+  floor = TRUE
+) {
+  rlang::check_bool(floor)
+
   unit <- match.arg(unit)
-
   interval <- lubridate::interval(x, y)
+  out <- lubridate::time_length(interval, unit = unit)
 
-  lubridate::time_length(interval, unit = unit) |>
-    floor() |>
-    as.integer()
+  if (floor) {
+    floor(out) |>
+      as.integer()
+  } else {
+    out
+  }
 }
