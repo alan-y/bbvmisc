@@ -64,9 +64,17 @@ adorn_np <- function(
     janitor::adorn_ns("front")
 
   if (trim) {
-    out[] <- lapply(out, function(col) {
-      if (is.character(col)) stringr::str_squish(col) else col
-    })
+    if (is.list(out)) {
+      for (i in seq_len(length(out))) {
+        out[[i]][] <- lapply(out[[i]], function(col) {
+          if (is.character(col)) stringr::str_squish(col) else col
+        })
+      }
+    } else {
+      out[] <- lapply(out, function(col) {
+        if (is.character(col)) stringr::str_squish(col) else col
+      })
+    }
   }
 
   out
