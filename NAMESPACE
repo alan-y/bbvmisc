@@ -23,5 +23,7 @@ export(x_ci)
 export(x_ci_split)
 importFrom(magrittr,"%>%")
 importFrom(rlang,.data)
-importFrom(stats,confint.default)
-importFrom(stats,glm)
+importFrom(stats,
+  confint.default,
+  glm
+)
