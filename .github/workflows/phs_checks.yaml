@@ -54,7 +54,7 @@ jobs:
       cancel-in-progress: false
   pkgdown:
     needs: [Style]
-    uses: Public-Health-Scotland/actions/.github/workflows/phs_pkgdown.yaml@v2.7.0
+    uses: Public-Health-Scotland/actions/.github/workflows/phs_pkgdown.yaml@v3.1.0
     permissions:
       contents: write
     secrets: inherit
