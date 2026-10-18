@@ -10,3 +10,4 @@
 ^docs$
 ^pkgdown$air.toml
 air.toml
+^air\.toml$
