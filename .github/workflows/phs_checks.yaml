@@ -45,7 +45,7 @@ jobs:
       cancel-in-progress: false
   R-CMD-check-extended:
     needs: [R-CMD-check-core]
-    uses: Public-Health-Scotland/actions/.github/workflows/phs_R-CMD-check-extended.yaml@v2.7.0
+    uses: Public-Health-Scotland/actions/.github/workflows/phs_R-CMD-check-extended.yaml@v3.1.0
     permissions:
       contents: read
     secrets: inherit
